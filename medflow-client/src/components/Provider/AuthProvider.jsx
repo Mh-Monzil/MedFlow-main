@@ -1,4 +1,5 @@
 import auth from "@/firebase/firebase.config";
+import axios from "axios";
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 
 
@@ -26,14 +27,28 @@ const AuthProvider = ({children}) => {
         return signInWithPopup(auth, googleProvider)
     }
 
+    const saveUser = async user=>{
+        const currentUser = {
+            email: user?.email,
+            role: 'patient',
+            status: 'verified'
+        }
+
+        const {data} = await axios.post(`${import.meta.env.VITE_BASE_URL}/user`, currentUser)
+
+        return data;
+    }
+
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth, currentUser =>{
           
 
             if(currentUser){
                 setUser(currentUser)
-                console.log(currentUser);
+                saveUser(currentUser)
                 setLoading(false)
+                console.log(currentUser)
+                console.log(currentUser.email)
             }
         })
 
