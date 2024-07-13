@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import { useEffect } from "react";
 
 const SignInform = () => {
-    const {user,signInUser, googleSignIn} = useAuth()
+    const {user,signInUser, googleSignIn, loading, setLoading} = useAuth()
     const navigate = useNavigate()
     const location = useLocation();
     const from = location.state || '/';
@@ -33,28 +33,38 @@ const SignInform = () => {
     }
 
 
-    const handleForm = (event)=>{
+    const handleForm = async (event)=>{
         event.preventDefault()
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
 
-        signInUser(email, password)
-        .then(result=> {
-            // console.log("login successful");
-            console.log(result);
-            toast.success('Login Successful')
-            navigate("/")
-        })
-        .catch(error=>{
-            console.log(error.message);
-        })
-       
+        // signInUser(email, password)
+        // .then(result=> {
+        //     // console.log("login successful");
+        //     console.log(result);
+        //     toast.success('Login Successful')
+        //     navigate("/")
+        // })
+        // .catch(error=>{
+        //     console.log(error.message);
+        // })
+        try{
+            setLoading(true);
+            await signInUser(email, password)
+    
+            navigate(from, {replace: true});
+            toast.success("Login Successful")
+            setLoading(false);
+            
+          }catch(error){
+            toast.error(error.message);
+            console.log(error);
+            setLoading(false);
+          }
     }
 
-    // const handleGoogleLogin = ()=>{
-    //     googleSignIn
-    // }
+    
     return (
         <div>
 
@@ -69,7 +79,7 @@ const SignInform = () => {
 
             <Input className="mt-2 mb-4 rounded-3xl bg-white focus:outline-primaryDark" type="password" name="password" placeholder="Enter your password here"/>
 
-            <Button className="bg-primaryDark w-full" type="submit">Sign Up</Button>
+            <Button className="bg-primaryDark w-full" type="submit">Sign In</Button>
         </form>
 
         <div className="flex justify-center items-center flex-col my-5 gap-4">
@@ -83,7 +93,7 @@ const SignInform = () => {
 
         <div className="mt-6 text-center ">
     <a href="#" className="text-sm text-blue-500 hover:underline dark:text-blue-400">
-        Don't have any account? <Link to="/signup">Sign In</Link> 
+        Don't have any account? <Link to="/signup">Sign Up</Link> 
     </a>
 </div>
        </div>

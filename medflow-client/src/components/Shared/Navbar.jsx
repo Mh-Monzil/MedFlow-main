@@ -5,8 +5,10 @@ import { IoMenu } from "react-icons/io5";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Logo from "./Logo";
 import PrimaryButton from "./PrimaryButton";
+import useAuth from "@/hooks/useAuth";
 
 const Navbar = () => {
+  const {signOutUser} = useAuth();
   const { pathname } = useLocation();
   console.log(pathname);
 
@@ -62,6 +64,7 @@ const Navbar = () => {
 
         <div className="hidden md:flex items-center gap-4">
           <PrimaryButton path={"/appointment"} title={"Appointment"} />
+          <button onClick={signOutUser}>Log</button>
         </div>
 
         <div className="flex md:hidden">
@@ -89,7 +92,7 @@ const Navbar = () => {
                 ))}
               </div>
               {/* appointment  */}
-              <PrimaryButton path={"/appointment"} title={"Appointment"} />
+              <PrimaryButton  path={"/appointment"} title={"Appointment"} />
             </SheetContent>
           </Sheet>
         </div>
