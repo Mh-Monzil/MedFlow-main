@@ -80,6 +80,10 @@ async function run() {
       res.send(result);
     })
 
+    app.get('/booked-appointments', async(req, res)=>{
+      const result = await bookedAppointmentCollection.find().toArray()
+      res.send(result)
+    })
 
 
     await client.db("admin").command({ ping: 1 });
