@@ -2,7 +2,8 @@
 
 import useAuth from "@/hooks/useAuth";
 import useRole from "@/hooks/useRole";
-
+import profileImage from '../../assets/images/dashboard-bg.webp'
+import { FadeLoader } from "react-spinners";
 
 
 
@@ -12,15 +13,17 @@ const MyProfile = () => {
   const [role, isLoading] = useRole();
     
   console.log(role)
-  // if (loading) return <ScaleLoader className="h-screen flex items-center justify-center" height={30} width={3} color="#F2A227" />
+  if (loading) return <FadeLoader  className="h-screen flex items-center justify-center" height={30} width={3} color="#F2A227" />
   return (
     <div className='flex justify-center items-center h-screen'>
-      <div className='bg-white shadow-lg rounded-2xl w-3/5'>
+      <div className='bg-white  shadow-lg rounded-2xl w-3/5'>
+        <div className="bg-black">
         <img
           alt='profile'
-          src='https://i.ibb.co/chZhDYM/design11-01-generated.jpg'
-          className='w-full mb-4 rounded-t-lg h-36'
+          src={profileImage}
+          className='w-full mb-4 opacity-60 bg-black rounded-t-lg h-36'
         />
+        </div>
         <div className='flex flex-col items-center justify-center p-4 -mt-16'>
           <a href='#' className='relative block'>
             <img

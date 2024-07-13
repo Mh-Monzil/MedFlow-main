@@ -15,6 +15,7 @@ import MyProfile from "@/components/Dashboard/MyProfile";
 import MyAppointment from "@/components/Dashboard/PationRoutes/MyAppointment";
 import Statistics from "@/components/Dashboard/AdminRoutes/Statistics";
 import DoctorsList from "@/components/Dashboard/AdminRoutes/DoctorsList";
+import BookedAppointment from "@/components/Dashboard/AdminRoutes/BookedAppointment";
 
 export const router = createBrowserRouter([
   {
@@ -84,6 +85,10 @@ export const router = createBrowserRouter([
       {
         path: "doctors-list",
         element:<DoctorsList/>
+      },
+      {
+        path: "appointment-list",
+        element:<BookedAppointment/>
       },
       
       

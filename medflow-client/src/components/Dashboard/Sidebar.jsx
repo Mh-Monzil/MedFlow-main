@@ -137,6 +137,21 @@ const Sidebar = () => {
                     <span className="mx-4 font-medium">Doctors List</span>
                   </NavLink>
 
+                  {/* Appointment Lists */}
+                  <NavLink
+                    to="appointment-list"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform rounded-md shadow-sm shadow-white    hover:text-navy ${
+                        isActive
+                          ? "bg-white text-navy"
+                          : " hover:bg-orange-100 "
+                      }`
+                    }
+                  >
+                    <GiProgression />
+                    <span className="mx-4 font-medium">Appointment Lists</span>
+                  </NavLink>
+
             
                 </>
               )}
