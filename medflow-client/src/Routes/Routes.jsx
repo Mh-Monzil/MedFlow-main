@@ -8,6 +8,9 @@ import SignUp from "@/pages/SignUp";
 import SignIn from "@/pages/SignIn";
 // import Appointment from "@/pages/Appointment";
 import Appointment from "@/pages/Appointment";
+import Dashboard from "./Dashboard";
+import MyProfile from "@/components/Dashboard/MyProfile";
+import MyBookings from "@/components/Dashboard/PationRoutes/MyBookings";
 
 export const router = createBrowserRouter([
     {
@@ -44,6 +47,30 @@ export const router = createBrowserRouter([
           path: "/appointment",
           element: <Appointment />,
         },
+        
+      ],
+    },
+
+    {
+      path: "/dashboard",
+      element: 
+       
+          <Dashboard />,
+      
+      
+      children: [
+        //user routes
+        {
+          path: "my-profile",
+          element: <MyProfile/>
+        },
+        {
+          path: "my-bookings",
+          element: <MyBookings/>
+        }
+        
+        
+        
       ],
     },
   ]);
