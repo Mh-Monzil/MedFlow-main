@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged,
 
 
 import { createContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export const AuthContext = createContext(null)
 const googleProvider = new GoogleAuthProvider();
@@ -72,7 +73,7 @@ const AuthProvider = ({children}) => {
 
     const signOutUser = ()=>{
         setLoading(false)
-        console.log("logout");
+        toast.success("Logout successful")
         return signOut(auth);
     }
     const authInfo = {

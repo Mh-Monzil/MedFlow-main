@@ -6,6 +6,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Logo from "./Logo";
 import PrimaryButton from "./PrimaryButton";
 import useAuth from "@/hooks/useAuth";
+import UserProfile from "./UserProfile";
 
 const Navbar = () => {
   const {signOutUser} = useAuth();
@@ -64,8 +65,8 @@ const Navbar = () => {
 
         <div className="hidden md:flex items-center gap-4">
           <PrimaryButton path={"/appointment"} title={"Appointment"} />
+          <UserProfile />
         </div>
-        <button onClick={signOutUser}>Log</button>
 
         <div className="flex md:hidden">
           <Sheet>
