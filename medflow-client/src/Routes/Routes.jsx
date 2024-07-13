@@ -11,7 +11,8 @@ import Appointment from "@/pages/Appointment";
 import PrivateRoute from "@/privateRoute/PrivateRoute";
 import Dashboard from "./Dashboard";
 import MyProfile from "@/components/Dashboard/MyProfile";
-import MyBookings from "@/components/Dashboard/PationRoutes/MyBookings";
+
+import MyAppointment from "@/components/Dashboard/PationRoutes/MyAppointment";
 
 export const router = createBrowserRouter([
   {
@@ -69,7 +70,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "my-bookings",
-        element: <MyBookings/>
+        element: <MyAppointment/>
       }
       
       

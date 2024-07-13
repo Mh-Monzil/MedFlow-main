@@ -1,8 +1,7 @@
 
 
 
-
-const MyBookings = () => {
+const MyAppointment = () => {
     return (
         <div>
             
@@ -10,7 +9,7 @@ const MyBookings = () => {
     );
 };
 
-export default MyBookings;
+export default MyAppointment;
 
 
 

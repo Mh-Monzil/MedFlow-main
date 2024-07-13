@@ -97,7 +97,7 @@ const Sidebar = () => {
                     }
                   >
                     <FaFileAlt />
-                    <span className="mx-4 font-medium">My Bookings</span>
+                    <span className="mx-4 font-medium">My Appointment</span>
                   </NavLink>
 
             

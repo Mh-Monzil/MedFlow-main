@@ -1,6 +1,7 @@
 
 
 import useAuth from "@/hooks/useAuth";
+import useRole from "@/hooks/useRole";
 
 
 
@@ -8,9 +9,9 @@ import useAuth from "@/hooks/useAuth";
 
 const MyProfile = () => {
   const { user, loading } = useAuth() || {}
-//   const [role, isLoading] = useUser();
-    let role = "Doctor"
-  console.log(user)
+  const [role, isLoading] = useRole();
+    
+  console.log(role)
   // if (loading) return <ScaleLoader className="h-screen flex items-center justify-center" height={30} width={3} color="#F2A227" />
   return (
     <div className='flex justify-center items-center h-screen'>

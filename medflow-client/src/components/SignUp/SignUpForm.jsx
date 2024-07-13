@@ -36,14 +36,20 @@ const SignUpForm = () => {
 
         createUser(email, password )
         .then(result=>{
-            updateProfile(result.user, {
-                displayName: name,
-                photoURL: photo
-            })
+
+            
+                updateProfile(result.user, {
+                    displayName: name,
+                    photoURL: photo
+                })
+                toast.success("Sign Up Successful");
+                navigate(from, {replace: true});
+                
+            
            console.log(result);
         })
         .catch(error=>{
-            console.log(error)
+           toast.error(error.message)
         })
         
     }
