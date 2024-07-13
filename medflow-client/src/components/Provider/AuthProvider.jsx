@@ -9,7 +9,7 @@ import { createContext, useEffect, useState } from "react";
 export const AuthContext = createContext(null)
 const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({children}) => {
-    const [user, setUser] = useState()
+    const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
 
     const createUser = ( email, password)=>{
@@ -50,6 +50,9 @@ const AuthProvider = ({children}) => {
                 setLoading(false)
                 console.log(currentUser)
                 console.log(currentUser.email)
+            }else{
+                setUser(null)
+                setLoading(false)
             }
         })
 
@@ -67,13 +70,15 @@ const AuthProvider = ({children}) => {
     }
 
     const signOutUser = ()=>{
-        setLoading(true)
-        return signOut(auth)
+        setLoading(false)
+        console.log("logout");
+        return signOut(auth);
     }
     const authInfo = {
         createUser,
         user,
         loading,
+        setLoading,
         upadateUserProfile,
         signInUser,
         googleSignIn,

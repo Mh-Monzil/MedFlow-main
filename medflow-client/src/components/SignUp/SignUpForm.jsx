@@ -2,14 +2,29 @@ import { Label } from "@radix-ui/react-label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "@/hooks/useAuth";
 import { updateProfile } from "firebase/auth";
+import toast from "react-hot-toast";
 
 
 const SignUpForm = () => {
-
     const {createUser, googleSignIn} = useAuth()
+    const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state || "/";
+
+
+  const handleGoogleSignIn = async () => {
+    try{
+        await googleSignIn();
+        toast.success("Sign In Successful");
+        navigate(from, {replace: true});
+    }catch(error){
+        console.log(error);
+        toast.error(error.message);
+    }
+}
 
     const handleForm = (event)=>{
         event.preventDefault()
@@ -58,7 +73,7 @@ const SignUpForm = () => {
         <div className="flex justify-center items-center flex-col my-5 gap-4">
             <p>Or  </p>
 
-            <Button onClick={()=>googleSignIn()}   className="flex gap-4 w-full  items-center rounded-3xl" variant="outline">
+            <Button onClick={handleGoogleSignIn}   className="flex gap-4 w-full  items-center rounded-3xl" variant="outline">
             <FcGoogle />
             Sign in with Google
             </Button>
