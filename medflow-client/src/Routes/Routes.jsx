@@ -14,6 +14,7 @@ import MyProfile from "@/components/Dashboard/MyProfile";
 
 import MyAppointment from "@/components/Dashboard/PationRoutes/MyAppointment";
 import Statistics from "@/components/Dashboard/AdminRoutes/Statistics";
+import DoctorsList from "@/components/Dashboard/AdminRoutes/DoctorsList";
 
 export const router = createBrowserRouter([
   {
@@ -78,7 +79,12 @@ export const router = createBrowserRouter([
       {
         path: "statistics",
         element:<Statistics/>
-      }
+      },
+      
+      {
+        path: "doctors-list",
+        element:<DoctorsList/>
+      },
       
       
     ],
