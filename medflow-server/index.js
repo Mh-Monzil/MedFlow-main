@@ -34,6 +34,7 @@ async function run() {
 
     const userCollection = database.collection("users");
     const appointmentCollection = database.collection("doctors");
+    const bookedAppointmentCollection = database.collection("bookedAppointment");
 
     app.post("/user", async (req, res) => {
       const user = req.body;
@@ -63,11 +64,23 @@ async function run() {
     });
 
     //get appointment
-
     app.get("/appointments", async (req, res) => {
       const result = await appointmentCollection.find().toArray();
       res.send(result);
     });
+
+    // save booked appointment data 
+    app.post('/booked-appointment', async (req, res) => {
+      const appData = req.body;
+      const id = appData.appointmentId;
+      const query = { appointmentId: id };
+      const isExist = await bookedAppointmentCollection.findOne(query);
+      if (isExist) return res.send({message: 'Appointment already exists'})
+      const result = await bookedAppointmentCollection.insertOne(appData);
+      res.send(result);
+    })
+
+
 
     await client.db("admin").command({ ping: 1 });
     console.log(
