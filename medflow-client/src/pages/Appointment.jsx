@@ -31,11 +31,11 @@ const Appointment = () => {
         </div>
       </div>
       {/* appointment card  */}
-      <div className="max-w-7xl mx-auto my-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="max-w-6xl mx-auto my-12 grid grid-cols-1 md:grid-cols-2 gap-10">
         {/* card 1 */}
         {
           allAppointment?.map((appointment, idx) => {
-            return <div key={idx} className="max-w-[500px] p-6 rounded-sm shadow-md hover:shadow-lg hover:shadow-primaryTeal/20 transition-all duration-300 ease-in-out">
+            return <div key={idx} className="max-w-[500px] md:w-[500px] mx-auto p-6 rounded-sm shadow-md hover:shadow-lg hover:shadow-primaryTeal/20 transition-all duration-300 ease-in-out">
             <div className="flex gap-5">
               <img src={appointment?.image_url} alt="" className="w-20 h-20 bg-primaryTeal" />
               <div className="flex-1">
