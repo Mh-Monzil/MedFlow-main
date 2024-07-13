@@ -64,8 +64,8 @@ const Navbar = () => {
 
         <div className="hidden md:flex items-center gap-4">
           <PrimaryButton path={"/appointment"} title={"Appointment"} />
-          <button onClick={signOutUser}>Log</button>
         </div>
+        <button onClick={signOutUser}>Log</button>
 
         <div className="flex md:hidden">
           <Sheet>
