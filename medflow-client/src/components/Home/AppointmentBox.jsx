@@ -16,7 +16,7 @@ const AppointmentBox = () => {
             </p>
           </div>
         </div>
-        <Link className="flex items-center justify-between gap-2 border-2 border-primaryTeal/30 px-5 py-2 rounded-3xl hover:bg-white hover:rounded-md transition-all duration-300">
+        <Link to="/appointment" className="flex items-center justify-between gap-2 border-2 border-primaryTeal/30 px-5 py-2 rounded-3xl hover:bg-white hover:rounded-md transition-all duration-300">
           <span className=" font-semibold">Make Appointment</span>
           <MdOutlineEventAvailable className="text-2xl text-primaryDark" />
         </Link>
