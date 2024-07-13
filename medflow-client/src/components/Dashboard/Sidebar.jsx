@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
-
+import { GiProgression } from "react-icons/gi";
 
 import { GrLogout } from "react-icons/gr";
 import { FcSettings } from "react-icons/fc";
@@ -11,12 +11,13 @@ import { MdRateReview } from "react-icons/md";
 // import useUser from "../../hooks/useUser";
 import Logo from "../Shared/Logo";
 import useAuth from "@/hooks/useAuth";
+import useRole from "@/hooks/useRole";
 
 
 const Sidebar = () => {
   const { signOutUser } = useAuth();
   const [isActive, setActive] = useState(false);
-//   const [role, isLoading] = useUser();
+  const [role, isLoading] = useRole();
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
@@ -83,9 +84,9 @@ const Sidebar = () => {
               </NavLink>
 
               {/* user ////////////////// */}
-              {/* {role === "user" && ( */}
+              {role === "patient" && (
                 <>
-                  {/* my application */}
+                  {/* my appointment */}
                   <NavLink
                     to="my-bookings"
                     className={({ isActive }) =>
@@ -102,7 +103,43 @@ const Sidebar = () => {
 
             
                 </>
-        
+              )}
+
+              {/* user ////////////////// */}
+              {role === "admin" && (
+                <>
+                  {/* my statistics */}
+                  <NavLink
+                    to="statistics"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform rounded-md shadow-sm shadow-white    hover:text-navy ${
+                        isActive
+                          ? "bg-white text-navy"
+                          : " hover:bg-orange-100 "
+                      }`
+                    }
+                  >
+                    <GiProgression />
+                    <span className="mx-4 font-medium">Statistics</span>
+                  </NavLink>
+                  {/* Doctor Lists */}
+                  <NavLink
+                    to="doctors-list"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform rounded-md shadow-sm shadow-white    hover:text-navy ${
+                        isActive
+                          ? "bg-white text-navy"
+                          : " hover:bg-orange-100 "
+                      }`
+                    }
+                  >
+                    <GiProgression />
+                    <span className="mx-4 font-medium">Doctors List</span>
+                  </NavLink>
+
+            
+                </>
+              )}
             </nav>
           </div>
         </div>
