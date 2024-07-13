@@ -35,6 +35,7 @@ const AuthProvider = ({children}) => {
         }
 
         const {data} = await axios.post(`${import.meta.env.VITE_BASE_URL}/user`, currentUser)
+        console.log(data);
 
         return data;
     }

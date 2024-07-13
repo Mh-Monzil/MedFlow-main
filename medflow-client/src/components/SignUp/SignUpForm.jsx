@@ -25,7 +25,7 @@ const SignUpForm = () => {
                 displayName: name,
                 photoURL: photo
             })
-           
+           console.log(result);
         })
         .catch(error=>{
             console.log(error)

@@ -2,14 +2,35 @@ import { Label } from "@radix-ui/react-label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "@/hooks/useAuth";
 import toast from "react-hot-toast";
+import { useEffect } from "react";
 
 const SignInform = () => {
-    const {signInUser, googleSignIn} = useAuth()
-
+    const {user,signInUser, googleSignIn} = useAuth()
     const navigate = useNavigate()
+    const location = useLocation();
+    const from = location.state || '/';
+
+
+    useEffect(() => {
+        if(user){
+          navigate('/')
+        }
+      }, [navigate, user])
+
+      //google sign in 
+    const handleGoogleSignIn = async () => {
+        try{
+            await googleSignIn();
+            toast.success("Sign In Successful");
+            navigate(from, {replace: true});
+        }catch(error){
+            console.log(error);
+            toast.error(error.message);
+        }
+    }
 
 
     const handleForm = (event)=>{
@@ -21,6 +42,7 @@ const SignInform = () => {
         signInUser(email, password)
         .then(result=> {
             // console.log("login successful");
+            console.log(result);
             toast.success('Login Successful')
             navigate("/")
         })
@@ -53,10 +75,7 @@ const SignInform = () => {
         <div className="flex justify-center items-center flex-col my-5 gap-4">
             <p>Or  </p>
 
-            <Button onClick={()=>{googleSignIn()
-                toast.success('Login Successful')
-                navigate("/")
-            }}  className="flex gap-4 w-full  items-center rounded-3xl" variant="outline">
+            <Button onClick={handleGoogleSignIn}  className="flex gap-4 w-full  items-center rounded-3xl" variant="outline">
             <FcGoogle />
             Sign in with Google
             </Button>
