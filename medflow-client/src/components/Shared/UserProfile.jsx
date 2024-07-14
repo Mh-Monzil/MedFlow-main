@@ -33,24 +33,24 @@ const UserProfile = () => {
                 >
                   Logout
                 </div>
-                <div className="w-full p-5 hover:bg-neutral-100 transition font-semibold cursor-pointer">
+                <div >
                   <Link
-                    to="/dashboard"
-                    
+                    to="/dashboard/my-profile"
+                    className="flex p-5 hover:bg-neutral-100 transition font-semibold cursor-pointer"
                   >
                     Dashboard
                   </Link>
                 </div>
               </>
             ) : (
-              <div >
-                  <Link
-                    to="/signin"
-                    className="flex p-5 hover:bg-neutral-100 transition font-semibold cursor-pointer"
-                  >
-                    Login
-                  </Link>
-                </div>
+              <div>
+                <Link
+                  to="/signin"
+                  className="flex p-5 hover:bg-neutral-100 transition font-semibold cursor-pointer"
+                >
+                  Login
+                </Link>
+              </div>
             )}
           </div>
         </div>
