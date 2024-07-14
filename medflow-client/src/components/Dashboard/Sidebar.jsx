@@ -88,7 +88,7 @@ const Sidebar = () => {
                 <>
                   {/* my appointment */}
                   <NavLink
-                    to="my-bookings"
+                    to="my-appointment"
                     className={({ isActive }) =>
                       `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform rounded-md shadow-sm shadow-white    hover:text-navy ${
                         isActive

@@ -85,6 +85,15 @@ async function run() {
       res.send(result)
     })
 
+    //get booked appointment for specific user
+    app.get('/booked-appointment/:email', async(req, res)=>{
+      const email = req.params.email;
+      const query = {patientEmail : email}
+      const result = await bookedAppointmentCollection.find(query).toArray()
+      res.send(result)
+      
+      
+    })
 
     await client.db("admin").command({ ping: 1 });
     console.log(
