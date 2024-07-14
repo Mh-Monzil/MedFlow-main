@@ -72,7 +72,7 @@ export const router = createBrowserRouter([
         element: <MyProfile/>
       },
       {
-        path: "my-bookings",
+        path: "my-appointment",
         element: <MyAppointment/>
       },
       
