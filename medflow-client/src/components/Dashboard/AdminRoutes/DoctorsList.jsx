@@ -33,7 +33,7 @@ const DoctorsList = () => {
                 <img src={appointment.image_url} alt="" />
             </TableCell>
             <TableCell>{appointment.doctor_name}</TableCell>
-            <TableCell className="text-left">anasahammad2002@gmail.com</TableCell>
+            <TableCell className="text-left">{appointment.doctor_email}</TableCell>
             <TableCell className="text-left">{appointment.doctor_designation}</TableCell>
             <TableCell className="text-left">{appointment.hospital_name}</TableCell>
             <TableCell className="text-left">{new Date(appointment.appointment_time).toLocaleTimeString()}</TableCell>

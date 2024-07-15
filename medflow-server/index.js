@@ -4,10 +4,10 @@ const app = express();
 const port = process.env.PORT || 3000;
 require("dotenv").config();
 const cors = require("cors");
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
 const corseOption = {
-  origin: ["http://localhost:5173"],
+  origin: ["http://localhost:5173", "https://medflow-d477b.web.app"],
   credentials: true,
 };
 app.use(cors(corseOption));
@@ -34,7 +34,8 @@ async function run() {
 
     const userCollection = database.collection("users");
     const appointmentCollection = database.collection("doctors");
-    const bookedAppointmentCollection = database.collection("bookedAppointment");
+    const bookedAppointmentCollection =
+      database.collection("bookedAppointment");
 
     app.post("/user", async (req, res) => {
       const user = req.body;
@@ -69,33 +70,39 @@ async function run() {
       res.send(result);
     });
 
-    // save booked appointment data 
-    app.post('/booked-appointment', async (req, res) => {
+    // save booked appointment data
+    app.post("/booked-appointment", async (req, res) => {
       const appData = req.body;
       const id = appData.appointmentId;
       const query = { appointmentId: id };
       const isExist = await bookedAppointmentCollection.findOne(query);
-      if (isExist) return res.send({message: 'Appointment already exists'})
+      if (isExist) return res.send({ message: "Appointment already exists" });
       const result = await bookedAppointmentCollection.insertOne(appData);
+      res.send(result);
+    });
+
+    app.get("/booked-appointments", async (req, res) => {
+      const result = await bookedAppointmentCollection.find().toArray();
+      res.send(result);
+    });
+
+    //get booked appointment for specific user
+    app.get("/booked-appointment/:email", async (req, res) => {
+      const email = req.params.email;
+      const query = { patientEmail: email };
+      const result = await bookedAppointmentCollection.find(query).toArray();
+      res.send(result);
+    });
+
+    // delete booked appointment by user 
+    app.delete("/my-appointment/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = {_id: new ObjectId(id)};
+      const result = await bookedAppointmentCollection.deleteOne(query);
       res.send(result);
     })
 
-    app.get('/booked-appointments', async(req, res)=>{
-      const result = await bookedAppointmentCollection.find().toArray()
-      res.send(result)
-    })
-
-    //get booked appointment for specific user
-    app.get('/booked-appointment/:email', async(req, res)=>{
-      const email = req.params.email;
-      const query = {patientEmail : email}
-      const result = await bookedAppointmentCollection.find(query).toArray()
-      res.send(result)
-      
-      
-    })
-
-    await client.db("admin").command({ ping: 1 });
+    // await client.db("admin").command({ ping: 1 });
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
@@ -107,7 +114,7 @@ async function run() {
 run().catch(console.dir);
 
 app.get("/", async (req, res) => {
-  console.log("Medflow is running");
+  res.send("Medflow is running");
 });
 app.listen(port, () => {
   console.log(`The server is running from ${port}`);

@@ -56,6 +56,7 @@ const Contact = () => {
             <input type="email" name="email" placeholder="Your Email" className="p-4 bg-teal-100 focus:outline-primaryTeal/50" />
             <input type="number" name="phone" placeholder="Phone Number" className="p-4 bg-teal-100 focus:outline-primaryTeal/50" />
             <textarea type="text" name="message" placeholder="Your Message" className="md:col-span-2 p-4 bg-teal-100 focus:outline-primaryTeal/50 h-40" />
+            <input type="submit" value="Submit" className="md:col-span-2 p-4 bg-primaryTeal rounded-sm text-lg font-bold cursor-pointer" />
         </form>
       </div>
     </div>

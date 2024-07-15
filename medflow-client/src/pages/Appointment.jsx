@@ -21,7 +21,7 @@ import useAuth from "@/hooks/useAuth";
 const Appointment = () => {
   const { user } = useAuth();
 
-  const { data: allAppointment } = useQuery({
+  const { data: allAppointment = [] } = useQuery({
     queryKey: ["appointment"],
     queryFn: async () => {
       const { data } = await axios.get(
