@@ -34,8 +34,8 @@ async function run() {
 
     const userCollection = database.collection("users");
     const appointmentCollection = database.collection("doctors");
-    const bookedAppointmentCollection =
-      database.collection("bookedAppointment");
+    const bookedAppointmentCollection = database.collection("bookedAppointment");
+    const doctorsCollection = database.collection("doctors");
 
     app.post("/user", async (req, res) => {
       const user = req.body;
@@ -95,12 +95,21 @@ async function run() {
     });
 
     // delete booked appointment by user 
-    app.delete("/my-appointment/:id", async (req, res) => {
+    app.delete("/delete-appointment/:id", async (req, res) => {
       const id = req.params.id;
       const query = {_id: new ObjectId(id)};
       const result = await bookedAppointmentCollection.deleteOne(query);
       res.send(result);
     })
+
+
+    // delete doctors list by admin
+    // app.delete("/delete-doctor/:id", async (req, res) => {
+    //   const id = req.params.id;
+    //   const query = {_id: new ObjectId(id)};
+    //   const result = await doctorsCollection.deleteOne(query);
+    //   res.send(result);
+    // })
 
     // await client.db("admin").command({ ping: 1 });
     console.log(
